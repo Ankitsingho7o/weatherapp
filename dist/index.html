@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="shortcut icon"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABnlBMVEVHcEwTmdIAAADj4+P9/v6JiYkBg7oAAAD/nWbNzc0Ol9EAAAAAkM7+/v4AisUUh7cIlNAXl84WlcsRmNIMltEKldEThrcHlNAVk8oOWHgcHByioqLn5+cQmNKfn58gICANV3cVh7nn5+ctNjcGU3ETExP/nGUTDwqKalKPUCr+nWaXVzARERESlc02QUETExAYm9MGVXUIISgFjsj/nmcLUG4GTGcIlNADcqAQhbgPl9L/nWcCks8Pl9KznIkBkc8IHCAGRl8Db5wBg7oLldABgrkCks8Fk88Bkc8Akc//zEL/////ikf/jEv/lVnf8fn/jEiEyucKldCAg3wBhLuAlpgAjcr9yUEIlNDT7Pb+ykT5vEH1okL+/v7/qk7/z1X/zEX/xFH/kkr/q1T/xVT8/f7J5/T/9t73+/1xwuTM6fUEks8dndT/9NnM5/NxweT/4pb+/Pn/+/mAhoEHlND/zUj/wEn/wEj/xFb3h0T/xFX/0Vf3vEDuiUL+8Oj+zEf++/n2vEDvtZTwgkP9iUbvg0LofkHomz//59r1uUAN8v10AAAASXRSTlMAtwPl/ZnmGYHT7RP8/ewh71dAwcXtI/ZBARSO5NCPFAEz4wx4GYEGt5KBjxleDAZ/eAfCgQFN15Y824Hn3Kj6CE2Wy4nL6ML75pWfOgAAAXpJREFUOMu101VTw0AUBeCWClRxd3d3d9n2hlSghbrj7u72r9lsk2yADMML52mT82Xm7uxGofiX9KT93g8zjKyo7FAO6fWjyjEG4KcozCw9Rggt4uAeC24l6dOztxAXXNmil8HgedSGl7TPykWIB5FYyIITikUkoCAfCcAWtvAJ20SQlyH0yxCwiAlAXbKvyBF7Bs4oOBX20irpwUOBB++lCfe9/QI4woO7KXDjx2YMBoUeuZwAXgq8AI31GMwgqfBR4IOGdm6EebFf2ds9PNjZP0n21xfQTWacE/rtVSvJ2hXXP9wAjBCwIHzP91jcuT/eXvCI4wQYebBhFfP4+vTMnZiRADMPNil4B3Au4ZgJmOXBOgX34HRxr6YJmELIYWfjrJ8C/22ctTsQGiBgEjkSVpkkHKiPgAmt3Sobu7YreZo1rDxgO/nrUK2WB+o24cKUyIMq8caVyYNiERTp5HpdOb3ULRqV6WtrUmlqpb9NiiH1Wwwpf/2RPwGRzML7ZF+GwwAAAABJRU5ErkJggg=="
+      type="image/x-icon"
+    />
+    
+    <script type="module" crossorigin src="./assets/index-30138715.js"></script>
+    <link rel="stylesheet" href="./assets/index-7a7f956e.css">
+  </head>
+  <body class="font-Josefin">
+    <div class="loader flex  flex-col w-1/2 mx-auto items-center p-4 hidden">
+      <div>
+        <img src="./assets/giphy-d1eb72f2.webp" alt="" class="rounded-xl m-4" />
+      </div>
+
+      <p class="text-3xl">Loading Weather for you !</p>
+    </div>
+    <div class="allContent">
+      <h1
+        class="text-3xl lg:text-5xl text-[#19283f] lg:w-1/2 lg:mx-auto my-4 px-6 lg:p-3"
+      >
+        Hey, Google. What's the weather outside ?
+      </h1>
+      <div class="flex relative inputField w-3/4 lg:w-1/2 m-auto">
+        <input
+          type="text"
+          class="bg-gray-300 p-4 m-2 lg:m-4 text-lg lg:text-xl border-2 border-orange-300 border-solid shadow-xl shadow-orange-100 focus:outline-4 focus:outline-[#19283f] focus:outline-offset-4 rounded-full w-full searchCity"
+          placeholder="Search any City"
+        />
+        <img
+          src="./assets/icons8-search-ee5d109d.svg"
+          alt="search--v1"
+          class="btnForSearchingCity transition-all p-2 h-12 w-12 lg:h-14 lg:w-14 self-center shadow-xl shadow-orange-100 bg-gray-300 rounded-full cursor-pointer hover:border-4 hover:border-[#1a2840] hover:outline-offset-4"
+        />
+      </div>
+      <br />
+      <div class="cautionDummyData flex lg:mx-auto my-4 px-6 lg:w-1/2">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADSklEQVR4nO2ZSWhUQRCGywV3cTuIuBJMUjWjCSKCiih48OyCG5oIxoMKHkQ0i5kqUA/qwXhyORgPRlAP6kUPioLivoGCF0VwQxDxoFmme1xaeqYzhjATM5N+k4mZDx68w+uq/l93V3VXAxQoUKBAKgzAACX4QAuZIB4l9MQIDISg0UwVQYnQf5+NgYowMneEZnwXd8ZU4du+Fqx0Qj4aCY3ybb+jowNBDr+x05bxYeJH4X4Igra94amKsVUx/Y5JaFEgTgAgJjjf+lBM0aiUzvDuQAteiI8G4xkIGCXY5Hyd92o4JqUL439JqK1NQtMgYFrriicrwRYrJia02ItRuxYU02P3hyKQI5QgJ9YjPjOrYVCPDWrBLYlIgu9t1IIcYXZOGa4F37oIWdUzY7tLR2uhTy4krsm0fef8kHl7XOci2GdTXTQm0/YdDR1OTCm6a0NjroVYFOMtJ+YQZENUiouUkFJMv2KR8LxsbPgQoutpju2DYtSqnoqz6ARedgv8VDYd8CXEogQb3ahcgkyISmipy+DfW+pwEvSykObaWRMV0zdrIyq4rFuNbKhTQi+ckD3QA3wJsSjBGjcqL40sGQz/Iia43YW8N2bHzKGQJ0KMhIZowVfxJMm0reuPa2aPU0xf3Ggshx7iU4hFCa506/arqcEJkA4teNQN3w3wgG8hFi10zc2YBkiFkhJUgjEl9FNLSRnkq5B6CivGH/ax7ymc4lW3tznmw2FQQixK8ISbOdchrRDG45DvQphOOiFX+vDUCpfbPqadWvGPmBqc05t5v9iFjqT9yEj52GT4jeAKyDNUpHRVMvxKaHyXH9tkk0yIMn0Y5AnGJkTG1+7UuLV7WxSm5055NeQJirE2oy2Kz02jL5qz2TS2Y7fMLq809vo2num0s3Gx/x6sLPZ46abYvd446ppEwfy2a38w0/apiw9Ma3NefGBc76X4kDBGVc7YB7OrbCT0RjlIaLOfAp3gI7fwGXKEYpRkgc5Xwfy/KJm2YwvK7g81QcAoprPO17m+e60QwQXtox/ItYLFXr64yuPTwC96hPb5tp/66k2w0rd9zbgpefUWdIS0F5Wd84P3h0MbIGgS2ZbuBCVCMd3PZhdRoECBfsIffjcdrQwPHUYAAAAASUVORK5CYII="
+          alt=""
+          class="inline-block bg-gray-300 rounded-full mx-2 mb-4 lg:mb-2 p-[4px] h-8 w-8 lg:h-10 lg:w-10"
+        />
+        <p class="text-[#19283f] lg:mt-2">
+          This is dummy data, search any city to get the latest data
+        </p>
+      </div>
+      <div
+        class="showingResult border-solid flex flex-col space-y-2 p-2 lg:p-4 m-2 transition-all ease-in-out text-[#1a2840] rounded-3xl lg:w-1/2 lg:m-auto shadow-xl shadow-orange-300"
+      >
+        <div class="todayWeather p-4 lg:w-2/3 space-y-4 lg:space-y-1">
+          <img
+            src="./assets/icons8-location-48.png"
+            alt=""
+            class="inline-block bg-gray-300 rounded-full mx-1 lg:mx-2 mb-2 p-[4px] h-8 w-8 lg:h-10 lg:w-10"
+          />
+          <p class="location text-3xl font-bold inline-block">Pune</p>
+          <h1 class="temp text-5xl lg:text-7xl font-bold">33.4&deg;C</h1>
+          <h3 class="weatherType text-5xl lg:text-6xl font-normal">Cloudy</h3>
+        </div>
+        <div
+          class="otherData flex flex-col space-y-3 lg:space-y-0 w-full lg:m-auto lg:flex-row lg:justify-between lg:p-4"
+        >
+          <div
+            class="Pressure flex flex-col lg:justify-center lg:items-center bg-[#19283f] text-white p-4 lg:p-3 mx-2 rounded-lg lg:rounded-3xl lg:w-40"
+          >
+            <h3 class="text-2xl font-light">Pressure</h3>
+            <p class="font-medium text-2xl lg:text-xl pressureData">1000mb</p>
+          </div>
+          <div
+            class="Visiblity flex flex-col lg:justify-center lg:items-center bg-[#cce16a] text-black p-4 mx-2 rounded-lg lg:rounded-3xl lg:w-40"
+          >
+            <h3 class="text-2xl font-light">Visiblity</h3>
+            <p class="font-medium text-2xl lg:text-xl visiblityData">10Km</p>
+          </div>
+          <div
+            class="humadity flex flex-col lg:justify-center lg:items-center bg-white text-black p-4 mx-2 rounded-lg lg:rounded-3xl lg:w-40"
+          >
+            <h3 class="text-2xl font-light">Humidity</h3>
+            <p class="font-medium text-2xl lg:text-xl humidityData">87%</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="nextDayForecastAndSun p-2 space-y-2 lg:space-y-0 lg:w-1/2 lg:mx-auto lg:my-6 lg:flex lg:space-x-4"
+      >
+        <div
+          class="sunAndRain space-y-2 lg:w-1/2 border-2 border-black border-solid p-6 rounded-3xl shadow-xl shadow-orange-100"
+        >
+          <div class="rain lg:text-3xl font-light flex items-center">
+            <img
+              src="data:image/png;base64,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"
+              alt=""
+              class="h-10 w-10 lg:h-12 lg:w-12 p-[2.5px] lg:p-2 mr-2 lg:mt-[-2px] bg-gray-300 rounded-full"
+            />
+            <h3 class="text-2xl lg:text-[1.76rem]">
+              Rain % Today :
+              <span class="rainPercentage font-semibold rainData"> 87% </span>
+            </h3>
+          </div>
+          <hr />
+          <div class="sun flex flex-col space-y-2">
+            <div class="sunrise flex lg:space-x-2 items-center">
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEGUlEQVR4nO2bz48URRTHi0SjRJJheK932GQNStaN/hGc/RG9r8GLCfHGgQjuMjuv6mBM5MIVDibuZeNBQqI3TkSFGBUuaMIdvBgNgoIbM68o8/oXTe/8YtoBevp9ks5OV1W/qv1OVb2qmtfGKIqiKIqiKIqiKCnBdRaY4Kpc8jlLVyYgnNwfsYVr3mKQiwmvhy4uTvJs4wkl8VTERx62+HPa6+K/xc9s8RcdzhP0vHjIumh/JuCOPB3O48WT9EzAgWVUxNHilQUcWLbpIoYR4g0ScOAzTRUxjBFvmIADn22iiEz4U+Zhh3nWYQLu8NgWfzRNgwm/Z4tXRi1LRgmYi2jxitiaWUPrjB8joDIGFbAiKmBFVMCKqIAVUQErogJWRAWsiApYESb4ji18W9WOoihPBCa4LMNY5Z8SnQMVpdawzoHV0DlQUZQmw+pEqqFORFEURZkaJvxB414mRELWguu8NDY+cKPzcnCLaJpM6O17LThcKYe7McHfRXF2RKi6RWQLd6XsQ/YcrgQHr5qmwBb/YMI7xcBIT3ghjvXr4eowASUvTiO8kKWJDbHFBL+bpuAtnEuF2MzSmLCbRZzGC2jCm4XXHG6madfT+25ui3AzKQfnTFMIbuEgE2yzxfvcwyPe4hYT/lt+uWbYlZbdkmdjGwTbYtPMK8GYXX3CN8N6q52leYLTJVH6THiRCY4HwkOhh6+EDzsvxJfMcYSHJC8pg/2HRCU4nde13mrHdRmzy8wLfRe9UYyH7jt8my3eSuKb4a4n/PRRPKuU9RZPMcG9NEb6ltgsxk33KXrdzAthrd0qBIT/KsMum7fCyYXO1HaTt5nOp3bvi+38i1prt8w8EZKA8Owf7LOFE+VhFly0J3xgns3uE8cx+ndhscEW1tgiZ19Q7d+nCw5XmOA3T/BlNrnHw5bQpz3l3Z3PRHuY8E9PeHaa4yy2cDhxKOilrsTmwkFpg7QluGjZ1IXgomW2eDvpbbAtk3w+5xEcH/zMgee9xa/ZRu9PWy8TrGdzYlyn1J3c366dlw5dXJQ12oP5Lr7OF8v0Cd7xFj4PR5ef+7/q9YRf5Z5d6ibcrPWbTJys86Tn3Qsbew8U87zFM7Kmq+JIyshemS38k+5qjpi64y1upR7343JeOLa0exa9w1v4JO2FW6ZuBNfaK0dQsl+VLZf0MJnYi71P1nGyQJ5ZG+JeGDsUqbubtAUuS9vM007YaL/IFv8q7TIu5vnHlnbHi2cLX8yyHUzwTakNd4Lbt2TqQJBjpx6u5pt/Cyce5JlnPMFn3IP3ZtkGJvgoP5zo4WotzxDZwqV4W+Xwrcddd+LhY+dV3wBNTo+kZE563HXHi+hkKXPDPCnk25v0iMnP6VWpB6uAKPO3vmahKIqiKIqiKIp5uvgP6ojvns2BlXMAAAAASUVORK5CYII="
+                alt=""
+                class="inline h-10 w-10 p-[2.5px] lg:h-12 lg:w-12 lg:p-2 mr-2 bg-gray-300 rounded-full"
+              />
+              <h3 class="text-2xl lg:text-3xl font-thin inline">
+                Sunrise : <span class="sunRiseHeading">6:00AM</span>
+              </h3>
+            </div>
+            <div class="sunset flex items-center lg:space-x-2">
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACrklEQVR4nO1YzWoUQRBu16AQFcNWTWT1IIg/kIMkog+g7+BNkCgiWYiImkQ329VeFH0IX0DQvIYHvZh4SDASPUdFIySaGkpq9m/2L7uz7N+E+aBg2Omu+r7uqt7qMSZBggQJ9iUkDxeY8BsTbkgez5m4gS3mfEJRY0o/MXGDb+FpSYA+m7jBj5sAcXieCebEjZ9pJkDfsYV5HWuGDUzwJch3i9/F4aVaAfqbviuMgXUzbGCCtXLRKlGLSxUBuFQiXyhqWDPDBsnjVJhkMwt2KI9TZhghzptkws09yP8UC1fMMEOaiIgF+WYiAvIOLps4QVSEhXU1fR40nwQJ+o2knR40YteN7jsBTLAQat4WBkpGZs8eZguPmWBGnEm1NUd7f4LPaqU7Qus5JsUWshpLY5puQS8hlb4GXrUrIgrEmZT6rrQfMN8150x4p7o5664IqSFfSDu8bXobwJvuln/O461eLlDjLSaYqR9zfExXrnADg1Um+BOYhVWf8K0S1TF1Aixke52iZRG68sViHqkqcsJFbZtb3sgIf+h3onCRijMjQfGSN90z8k1F5dKnmPBdK+L1Fxz4IItjp/tKto68g5Ns8Wv1CsNHJm9WXHpCHp44EphLT7DFe2xxuWY3NiSHmQGRN4d0FUPEd5jg7l4pUD7nCXZCIt6rr/6yr/lvUEK7Fq62O3fXwTW2+DeUTo9MPyFzcIwJf4cIZKP60DTzK3fmX+K8o71h2zB4+mYo+LJcNwej+tA5TLhS9pOHG6Zf8C2+CQm436kftvggdP6/7ha552xhO5Qe2z7Bs5rAn0rvxY1f7DSWOG8yVMwrUXnUOzTmAFvYanBmb1UJKH7zYcJ/4jKjnQvIjKqPoq/NqDwaQlW2sQOkhedbfNEp+Uo8fKm+1GdUHgkSJEhgBo7/LnoCblrxPecAAAAASUVORK5CYII="
+                alt=""
+                class="inline h-10 w-10 p-[2.5px] lg:h-12 lg:w-12 lg:p-2 mr-2 bg-gray-300 rounded-full"
+              />
+              <h3 class="text-2xl lg:text-3xl font-thin inline">
+                Sunset : <span class="sunSetHeading">6:00PM</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div
+          class="nextDayForecast flex flex-col justify-center space-y-2 p-6 text-[#1a2840] rounded-3xl border-2 border-black border-solid lg:w-1/2 shadow-xl shadow-orange-100"
+        >
+          <h3 class="font-thin text-[#19283f] text-xl lg:text-3xl">Tomorrow</h3>
+          <h1 class="temp text-3xl font-bold lg:text-4xl nextDayTemp">
+            33.4&deg; C
+          </h1>
+          <h3
+            class="weatherType text-2xl lg:text-3xl font-medium nextDayWeatherType"
+          >
+            Cloudy
+          </h3>
+        </div>
+      </div>
+
+      <div class="fiveDaysForecast w-full lg:w-1/2 lg:mx-auto p-6 space-y-3">
+        <h1 class="text-[#1a2840] text-3xl lg:text-5xl font-semibold">
+          Weather Predictions
+        </h1>
+        <div class="fiveDaysForecastData">
+          <div class="forecast">
+            <img src="./assets/cloud-cdbf4533.svg" alt="" class="forecastIcon" />
+            <div class="dateAndWeather">
+              <p class="forecastDate">November 11</p>
+              <p class="forecastDescp">Cloudy</p>
+            </div>
+            <p class="forecastTemp">
+              <span>26&deg;</span>/<span> 34&deg;</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    
+  </body>
+</html>
